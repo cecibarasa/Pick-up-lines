@@ -4,7 +4,8 @@ class Config:
     general parent class
     '''
 
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://nabalayo:karitie@localhost/watchlist'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://nabalayo:karitie@localhost/picklines'
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 class ProdConfig:
     '''
