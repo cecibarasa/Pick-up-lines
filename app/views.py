@@ -11,10 +11,10 @@ def index():
     title = 'Home - Welcome to The Pitches of The Century'
     return render_template('index.html', title = title)
     
-@app.route('/pitch/<int:pitch_id>')
-def pitch(pitch_id):
+@app.route('/pitch')
+def pitch():
     '''
     view pitch function that returns pitch categories
     '''
 
-    return render_template('pitch.html', id = pitch_id)    
+    return render_template('pitch.html')    
