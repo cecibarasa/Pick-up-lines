@@ -11,7 +11,8 @@ def index():
     title = 'Home - Welcome to The Pitches of The Century'
     return render_template('index.html', title = title)
     
-@main.route('/pitch')
+@main.route('/pitch', methods=['GET', 'POST'])
+@login_required
 def pitch():
     '''
     view pitch function that returns pitch categories
