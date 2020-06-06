@@ -1,8 +1,8 @@
 from flask import render_template
-from app import app
+from . import main
 
 #Views
-@app.route('/')
+@main.route('/')
 def index():
     '''
     View root page function that returns index page and its data
@@ -11,7 +11,7 @@ def index():
     title = 'Home - Welcome to The Pitches of The Century'
     return render_template('index.html', title = title)
     
-@app.route('/pitch')
+@main.route('/pitch')
 def pitch():
     '''
     view pitch function that returns pitch categories
