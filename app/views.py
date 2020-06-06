@@ -8,10 +8,10 @@ def index():
     View root page function that returns index page and its data
     '''
 
-    message = 'Pitches'
-    return render_template('index.html', message=message)
+    title = 'Home - Welcome to The Pitches of The Century'
+    return render_template('index.html', title = title)
     
-@app.route('/pitch/<int:pitch_id')
+@app.route('/pitch/<int:pitch_id>')
 def pitch(pitch_id):
     '''
     view pitch function that returns pitch categories
