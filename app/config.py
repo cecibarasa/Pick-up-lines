@@ -1,3 +1,4 @@
+import os
 class Config:
     '''
     general parent class
@@ -18,3 +19,8 @@ class DevConfig:
     '''
 
     DEBUG = True
+
+config_options = {
+'development':DevConfig,
+'production':ProdConfig
+}
