@@ -4,53 +4,57 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">{% if title %}
     <title> {{title}}</title>
-    <title>Home - Welcome to The Pitches of The Century</title>
+    <title>Home - Welcome to The Pitches of The Century</title>{% endif %}
     <!-- Styles block -->
     {% block styles%} {{ super() }}
     <link rel="stylesheet" href="{{url_for('static',filename='css/pitch.css')}}">
     <link href="https://fonts.googleapis.com/css2?family=Tenali+Ramakrishna&display=swap" rel="stylesheet"> {% endblock %}
 </head>
 
-<body style="background-image: url('https://img.freepik.com/free-photo/top-view-office-stationery-with-pen-notebook_23-2148524768.jpg?size=626&ext=jpg');">
+<body>
     {% block content %}
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <div class="card border-info mb-3 column" style="max-width: 30rem;">
-        <div class="card-header">
-            PickUp Lines
+    <section id="hero">
+        <div class="hero-container">
+
+            <div class="row">
+
+                <div class="column">
+                    <button type="button" class="btn btn-info center">Pick Up Lines</button>
+                    <br>
+                    <br>
+                    <div class="card">
+                        <p>Did it hurt when you fell from the sky?</p>
+                    </div>
+                </div>
+                <div class="column">
+                    <button type="button" class="btn btn-info">Product Pitch</button>
+                    <br>
+                    <br>
+                    <div class="card">
+                        <p>Innovation, Invention and Creation</p>
+                    </div>
+                </div>
+                <div class="column">
+                    <button type="button" class="btn btn-info">Interview Pitch</button>
+                    <br>
+                    <br>
+                    <div class="card">
+                        <p>You have to be prepared for anything</p>
+                    </div>
+                </div>
+                <div class="column">
+                    <button type="button" class="btn btn-info">Promotion Pitch</button>
+                    <br>
+                    <br>
+                    <div class="card">
+                        <p>Well is it because of your hardword or your creativity?</p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="card-body text-info">
-            <h4 class="card-title"></h4>
-            <p class="card-text">Did it hurt when you fell from the sky?</p>
-        </div>
-    </div>
-    <div class="card border-info mb-3 column" style="max-width: 30rem;">
-        <div class="card-header">
-            PickUp Lines
-        </div>
-        <div class="card-body text-info">
-            <h4 class="card-title"></h4>
-            <p class="card-text">Did it hurt when you fell from the sky?</p>
-        </div>
-    </div>
-    <div class="card border-info mb-3 column" style="max-width: 30rem;">
-        <div class="card-header">
-            Product Pitch
-        </div>
-        <div class="card-body text-info">
-            <h4 class="card-title"></h4>
-            <p class="card-text">A successful sales pitch begins a dialogue. Rather than starting with an opening line that’s all about you, try posing a question.</p>
-        </div>
-    </div>
-    <div class="card border-info mb-3 column" style="max-width: 30rem;">
-        <div class="card-header">
-            Interview Pitch
-        </div>
-        <div class="card-body text-info">
-            <h4 class="card-title"></h4>
-            <p class="card-text">Did it hurt when you fell from the sky?</p>
-        </div>
-    </div>{% endblock %} </body>
+    </section>{% endblock %}
+</body>
 
 </html>

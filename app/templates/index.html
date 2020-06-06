@@ -6,22 +6,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> {% if title %}
     <title> {{title}}</title>
-    <title>Home - Welcome to The Pitches of The Century</title>
-    {% endif %}
+    <!-- <title>Home - Welcome to The Pitches of The Century</title>{% endif %} -->
+    <!-- Styles block -->
+    {% block styles%} {{ super() }}
+    <!-- <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}"> -->
+    <link rel="stylesheet" href="../static/css/index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tenali+Ramakrishna&display=swap" rel="stylesheet"> {% endblock %}
 </head>
 
 <body>
-    {% block styles%} {{ super() }}
-    <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
-    <link href="https://fonts.googleapis.com/css2?family=Tenali+Ramakrishna&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous"> {% endblock %} {% block content %}
-    <header class="masthead">
-        <div class="container">
-            <div class="masthead-subheading">Welcome To Our Studio!</div>
-            <div class="masthead-heading text-uppercase">It's Nice To Meet You</div>
-            <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="pitch">Tell Me More</a>
+    {% block content %}
+    <!-- ======= Hero Section ======= -->
+    <section id="hero">
+        <div class="hero-container">
+            <h3>Welcome to <strong>Pitches</strong></h3>
+            <h1>You got pitch?</h1>
+            <a href="pitch" class="btn-get-started scrollto">Get Started</a>
         </div>
-    </header>
+    </section>
+    <!-- End Hero -->
     {% endblock %}
 
 </body>
