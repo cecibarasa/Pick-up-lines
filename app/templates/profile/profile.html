@@ -11,14 +11,9 @@
             {%else%}
             <p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;"> {{user.username| capitalize}} has no bio </p>
             {% endif %} {% if user == current_user %}
-            <a href="{{url_for('main.update_profile',name=user.username)}}">Edit profile</a> {% endif %}
-        </div>
+            <a href="{{url_for('main.update_profile',name=user.username)}}">Edit profile</a> {% endif %} {% if user.profile_pic_path %}
 
-        <!--Display profile photo-->
-        <div class="col-md-4 card profile-card mt-2">
-            {% if user.profile_pic_path %}
-
-            <img src="{{url_for('static',filename=user.profile_pic_path)}}" alt="" class="thumbnail" style="width: 350px;" height="350px"> {%else%}
+            <img src="{{url_for('static',filename=user.profile_pic_path)}}" alt="" class="thumbnail" style="width: 350px" height="350px"> {%else%}
             <p>No profile picture</p>
 
             {% endif %} {% if user == current_user %}
@@ -29,34 +24,24 @@
             </form>
             {% endif %}
         </div>
+        <div class="col-md-4 card profile-card mt-2">
 
-        <h1 class='text-center' style="color:white;">Your Pitches</h1>
-    </div>
-    <div class="">
-        <h1 class='text-center' style="color:white;">Your Pitches</h1>
-        {%if pitch%} {%for pitch_item in pitch%}
-        <div class="container">
-            <div class="row">
-                <div class="col-md-2"></div>
-                <div class="col-md-8">
-
-                    <div class="card mt-5">
-                        <div class="card-header">
-                            <b>{{pitch_item.category}}</b>
-                        </div>
-                        <div class="card-body">
-
-                            <p class="card-text">
-                                <i><strong>{{pitch_item.title}}</strong></i><br>
-                                <i>{{pitch_item.content}}</i>
-                            </p>
-                        </div>
-                    </div>
+            <div class="col-md-1"></div>
+            <div class="col-md-5" id="user">
+                {% if current_user %}
+                <h3 class="text-center">You have {{user.pitches.count()}} Pitches</h3>
+                {% for i in pitches%}
+                <div class="pitches">
+                    <h5>Title: {{i.title}}</h5>
+                    <h6>{{i.pitch}}</h6>
+                    <p>{{i.comment.count()}} Comments</p>
                 </div>
+
+                {%endfor%} {%else%}
+                <h3>You have ) posts</h3>
+                {%endif%}
+
             </div>
-
-            {%endfor%} {%endif%}
-
         </div>
     </div>
 </div>

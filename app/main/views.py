@@ -45,9 +45,9 @@ def product():
     return render_template('product.html',product=product,comment=comment)
 @main.route('/pickup')
 def pickup():
-    comment = Comment.query.all()
+    comments = Comment.query.all()
     pickup = Pitch.query.filter_by(category = 'Pickup Lines').all()
-    return render_template('pickup.html', pickup=pickup,comment=comment)        
+    return render_template('pickup.html', pickup=pickup,comments=comment)        
     
 @main.route('/user/<uname>')
 def profile(uname):
@@ -104,7 +104,7 @@ def comment(pitch_id):
 
         return redirect(url_for('main.comment',pitch_id=pitch_id))
     
-    return render_template('comments.html', form = form,pitch=pitch,pitch_id=pitch_id,user=user)
+    return render_template('comments.html', comments=comments, form = form,pitch=pitch,pitch_id=pitch_id,user=user)
 
 @main.route('/new_pitch', methods = ['GET','POST'])
 @login_required
