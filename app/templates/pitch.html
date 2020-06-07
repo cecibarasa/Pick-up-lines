@@ -1,4 +1,4 @@
-{% extends 'base.html'%} {% import 'macros.html' as macro%}
+{% extends 'base.html'%} {% import 'macros.html' as macro%} {% import 'bootstrap/wtf.html' as wtf %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,46 +15,19 @@
 
 <body>
     {% block content %}
-    <section id="hero">
-        <div class="hero-container">
 
-            <div class="row">
+    <div id="particles-js">
+        <div class=" row">
 
-                <div class="column">
-                    <button type="button" class="btn btn-info center">Pick Up Lines</button>
-                    <br>
-                    <br>
-                    <div class="card">
-                        <p>Did it hurt when you fell from the sky?</p>
-                    </div>
-                </div>
-                <div class="column">
-                    <button type="button" class="btn btn-info">Product Pitch</button>
-                    <br>
-                    <br>
-                    <div class="card">
-                        <p>Innovation, Invention and Creation</p>
-                    </div>
-                </div>
-                <div class="column">
-                    <button type="button" class="btn btn-info">Interview Pitch</button>
-                    <br>
-                    <br>
-                    <div class="card">
-                        <p>You have to be prepared for anything</p>
-                    </div>
-                </div>
-                <div class="column">
-                    <button type="button" class="btn btn-info">Promotion Pitch</button>
-                    <br>
-                    <br>
-                    <div class="card">
-                        <p>Well is it because of your hardword or your creativity?</p>
-                    </div>
-                </div>
+            <div class="col-md-2"></div>
+            <div class="col-md-8" id="postform">
+                <h2 class="text-center">Create Your Pitch Here!</h2>
+                {{wtf.quick_form(form)}}
             </div>
+            <div class="col-md-2"></div>
         </div>
-    </section>{% endblock %}
-</body>
+    </div>
+
+    {% endblock%}
 
 </html>

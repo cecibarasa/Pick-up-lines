@@ -20,6 +20,7 @@ def create_app(config_name):
     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://nabalayo:pk@localhost/project'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     app.config['UPLOADED_PHOTOS_DEST'] = 'app/static/photos'
+    app.config['SECRET_KEY'] = 'super secret key'
     
 
     # Initializing flask extensions
