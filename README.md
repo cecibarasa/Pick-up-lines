@@ -6,6 +6,9 @@
 
 This is a flask application that allows users to post a pitch with any category of which he/she must sign up to do so.
 
+# Preview
+![](shot.png)
+
 # User Stories
 
 As a user, you will be able to;
