@@ -30,4 +30,6 @@ As a user, you will be able to;
 * `Python3.6`
 * `Flask`
 
+### [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/cecibarasa/Pick-up-lines/blob/master/license.md)
 
+## [Support and contact details](https://www.linkedin.com/in/cecilia-barasa-4a8311195/)
