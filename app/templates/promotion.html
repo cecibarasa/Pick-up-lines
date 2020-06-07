@@ -1,0 +1,25 @@
+{% extends 'base.html'%} {% import 'macros.html' as macro%} {% block styles%} {{ super() }} {% endblock %} {% block content %} {{super()}}
+<div class="home text-center ">
+    <h2>Promotion Pitches</h2>
+    <nav aria-label="">
+        <ul class="pagination justify-content-center">
+
+            <li class="page-item">
+                <a class="page-link" href="{{url_for('main.pickup')}}">Pickup Lines</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="{{url_for('main.interview')}}">Interview</a>
+            </li>
+            <li class="page-item ">
+                <a class="page-link " href="{{url_for( 'main.promotion')}} ">Promotion</a>
+            </li>
+            <li class="page-item ">
+                <a class="page-link " href="{{url_for( 'main.product')}} ">Product</a>
+            </li>
+
+        </ul>
+    </nav>
+    <a type="button " class="btn btn-secondary btn-sm " href="{{url_for( 'main.new_pitch')}} ">Add a Pitch</a> {{macro.showPitch(promotion)}}
+
+</div>
+{% endblock %}
