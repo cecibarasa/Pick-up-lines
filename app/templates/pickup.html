@@ -1,4 +1,6 @@
-{% extends 'base.html'%} {% import 'macros.html' as macro%} {% block styles%} {{ super() }} {% endblock %} {% block content %} {{super()}}
+{% extends 'base.html'%} {% import 'macros.html' as macro%} {% block content %} {{super()}} {% block styles%} {{ super() }}
+<link rel="stylesheet" href="{{url_for('static',filename='css/pitch.css')}}">
+<link href="https://fonts.googleapis.com/css2?family=Tenali+Ramakrishna&display=swap" rel="stylesheet"> {% endblock %}
 <div class="home text-center ">
     <h2>Pickup Pitches</h2>
     <nav aria-label="">

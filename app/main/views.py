@@ -1,7 +1,7 @@
 from flask import render_template,request,redirect,url_for,abort
 from . import main
-from ..models import User,Pitch,Comment,Upvote,Downvote
-from .forms import UpdateProfile, PitchForm, CommentForm
+from ..models import User,Pitch,Comment
+from .forms import Pitch_Form, Update_Profile,CommentsForm
 from .. import db, photos
 from flask_login import login_required,current_user
 
@@ -11,11 +11,6 @@ def index():
     '''
     View root page function that returns index page and its data
     '''
-    # pithes = Pitch.query.all()
-    # pickuplines = Pitch.query.filter_by(category='Pick up lines').all()
-    # productpitch = Pitch.query.filter_by(category='Product Pitch').all()
-    # interviewpitch = Pitch.query.filter_by(category='Interview Pitch').all()
-    # promotionpitch = Pitch.query.filter_by(category='Promotion Pitch').all()
 
     title = 'Home - Welcome to The Pitches of The Century'
     return render_template('index.html', title = title)
@@ -71,7 +66,7 @@ def update_profile(name):
     if user is None:
         abort(404)
 
-    form = UpdateProfile()
+    form = Update_Profile()
 
     if form.validate_on_submit():
         user.bio = form.bio.data
@@ -91,58 +86,70 @@ def update_pic(uname):
         filename = photos.save(request.files['photo'])
         path = f'photos/{filename}'
         user.profile_pic_path = path
-        user_photo = PhotoProfile(pic_path = path,user = user)
         db.session.commit()
-    return redirect(url_for('main.profile', uname=uname))
+    return redirect(url_for('main.profile',uname=uname))
 
-@main.route('/comments/<int:pitch_id>/comment',methods=['POST','GET'])
+@main.route('/comments/<int:pitch_id>/comment',methods=['GET','POST'])
 @login_required
 def comment(pitch_id):
 
     form = CommentsForm()    
-    pitch = Pitch.query.filter_by(id = pitch_id).first()
-    
-
-  
+    pitch = Pitch.query.filter_by(id=pitch_id).first()
+    comments = Comment.query.filter_by(pitch_id = pitch_id).all()
     user = current_user.username
     if form.validate_on_submit():
-        comment = Comment(content = form.comment.data,user_id = current_user.id,pitch_id = pitch.id)
+        comment = Comment(comment = form.comment.data,user_id = current_user.id,pitch_id = pitch.id)
         db.session.add(comment)
         db.session.commit()
 
         return redirect(url_for('main.comment',pitch_id=pitch_id))
     
-    return render_template('comments.html', form = form,pitch=pitch,pitch_id=pitch_id,user=user)        
+    return render_template('comments.html', form = form,pitch=pitch,pitch_id=pitch_id,user=user)
 
-
-@main.route('/like/<int:id>',methods = ['POST','GET'])
+@main.route('/new_pitch', methods = ['GET','POST'])
 @login_required
-def like(id):
-    get_pitches = Upvote.get_upvotes(id)
-    valid_string = f'{current_user.id}:{id}'
-    for pitch in get_pitches:
-        to_str = f'{pitch}'
-        print(valid_string+" "+to_str)
-        if valid_string == to_str:
-            return redirect(url_for('main.index',id=id))
-        else:
-            continue
-    new_vote = Upvote(user = current_user, pitch_id=id)
-    new_vote.save()
-    return redirect(url_for('main.index',id=id))
+def new_pitch():
+    form = Pitch_Form()    
 
-@main.route('/dislike/<int:id>',methods = ['POST','GET'])
-@login_required
-def dislike(id):
-    pitch = Downvote.get_downvotes(id)
-    valid_string = f'{current_user.id}:{id}'
-    for p in pitch:
-        to_str = f'{p}'
-        print(valid_string+" "+to_str)
-        if valid_string == to_str:
-            return redirect(url_for('main.index',id=id))
-        else:
-            continue
-    new_downvote = Downvote(user = current_user, pitch_id=id)
-    new_downvote.save()
-    return redirect(url_for('main.index',id = id))
+    if form.validate_on_submit():
+        pitch = Pitch(title = form.title.data, category =form.category.data, content = form.content.data,upvote = 0,downvote = 0,user_id=current_user.id)
+
+        pitch.save_pitch()
+        
+        return redirect(url_for('main.pitch'))
+    
+    return render_template('new_pitch.html', pitch_form = form)  
+
+
+
+# @main.route('/like/<int:id>',methods = ['POST','GET'])
+# @login_required
+# def like(id):
+#     get_pitches = Upvote.get_upvotes(id)
+#     valid_string = f'{current_user.id}:{id}'
+#     for pitch in get_pitches:
+#         to_str = f'{pitch}'
+#         print(valid_string+" "+to_str)
+#         if valid_string == to_str:
+#             return redirect(url_for('main.index',id=id))
+#         else:
+#             continue
+#     new_vote = Upvote(user = current_user, pitch_id=id)
+#     new_vote.save()
+#     return redirect(url_for('main.index',id=id))
+
+# @main.route('/dislike/<int:id>',methods = ['POST','GET'])
+# @login_required
+# def dislike(id):
+#     pitch = Downvote.get_downvotes(id)
+#     valid_string = f'{current_user.id}:{id}'
+#     for p in pitch:
+#         to_str = f'{p}'
+#         print(valid_string+" "+to_str)
+#         if valid_string == to_str:
+#             return redirect(url_for('main.index',id=id))
+#         else:
+#             continue
+#     new_downvote = Downvote(user = current_user, pitch_id=id)
+#     new_downvote.save()
+#     return redirect(url_for('main.index',id = id))
