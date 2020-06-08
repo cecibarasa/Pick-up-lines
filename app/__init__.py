@@ -26,12 +26,11 @@ def create_app(config_name):
     app.config['UPLOADED_PHOTOS_DEST'] = 'app/static/photos'
     app.config['SECRET_KEY'] = 'super secret key'
     app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL")
-    # app.config['MAIL_SERVER'] = 'smtp.googlemail.com'
-    # app.config['MAIL_PORT'] = 587
-    # app.config['MAIL_USE_TLS'] = True
-    # app.config['MAIL_USERNAME'] = os.environ.get("MAIL_USERNAME")
-    # app.config['MAIL_PASSWORD'] = os.environ.get("MAIL_PASSWORD")
-    # app.config['SQLALCHEMY_DATABASE_URI' = os.environ.get("DATABASE_URL")
+    app.config['MAIL_SERVER'] = 'smtp.googlemail.com'
+    app.config['MAIL_PORT'] = 587
+    app.config['MAIL_USE_TLS'] = True
+    app.config['MAIL_USERNAME'] = os.environ.get("MAIL_USERNAME")
+    app.config['MAIL_PASSWORD'] = os.environ.get("MAIL_PASSWORD")
     
 
     # Initializing flask extensions
