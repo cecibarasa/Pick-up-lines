@@ -25,6 +25,7 @@ def create_app(config_name):
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     app.config['UPLOADED_PHOTOS_DEST'] = 'app/static/photos'
     app.config['SECRET_KEY'] = 'super secret key'
+    app.config['SQLALCHEMY_DATABASE_URI'] = "DATABASE_URL"
     # app.config['MAIL_SERVER'] = 'smtp.googlemail.com'
     # app.config['MAIL_PORT'] = 587
     # app.config['MAIL_USE_TLS'] = True

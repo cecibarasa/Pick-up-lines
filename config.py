@@ -1,5 +1,7 @@
 import os
+import psycopg2
 class Config:
+
     
     SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://nabalayo:kartie@localhost/project'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
@@ -24,6 +26,7 @@ class ProdConfig:
     '''
     
     SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
+    
 
 class DevConfig:
     '''
