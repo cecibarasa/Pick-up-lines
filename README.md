@@ -12,14 +12,14 @@ This is a flask application that allows users to post a pitch with any category 
 # User Stories
 
 As a user, you will be able to;
-`see the pitches other people have posted.`
-`vote on the pitch they liked and give it a downvote or upvote.`
-`sign in for me to leave a comment`
-`receive a welcoming email once I sign up.`
-`view the pitches I have created in your profile page.`
-`comment on the different pitches and leave feedback.`
-`submit a pitch in any category.`
-`view the different categories.`
+* `see the pitches other people have posted.`
+* `vote on the pitch they liked and give it a downvote or upvote.`
+* `sign in for me to leave a comment`
+* `receive a welcoming email once I sign up.`
+* `view the pitches I have created in your profile page.`
+* `comment on the different pitches and leave feedback.`
+* `submit a pitch in any category.`
+* `view the different categories.`
 
 ## BDD
 | Behavior | Input | Output |
