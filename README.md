@@ -32,6 +32,11 @@ As a user, you will be able to;
 ## Technologies Used
 * `Python3.6`
 * `Flask`
+* `HTML`
+* `CSS`
+* `MAKO`
+* `C`
+* `JAVASCRIPT`
 
 ### [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/cecibarasa/Pick-up-lines/blob/master/LICENSE.md)
 
