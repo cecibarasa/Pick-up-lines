@@ -28,21 +28,34 @@
 
             <div class="col-md-1"></div>
             <div class="col-md-5" id="user">
-                {% if current_user %}
+
                 <h3 class="text-center">You have {{user.pitches.count()}} Pitches</h3>
-                {% for i in pitches%}
-                <div class="pitches">
-                    <h5>Title: {{user.title}}</h5>
-                    <h6>{{user.pitch}}</h6>
-                    <p>{{user.comment.count()}} Comments</p>
+
+                {%if pitch%} {%for pitch_item in pitch%}
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-8">
+
+                            <div class="card mt-5">
+                                <div class="card-header">
+                                    <b>{{pitch_item.category}}</b>
+                                </div>
+                                <div class="card-body">
+
+                                    <p class="card-text">
+                                        <i><strong>{{pitch_item.title}}</strong></i><br>
+                                        <i>{{pitch_item.content}}</i>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {%endfor%} {%endif%}
+
                 </div>
-
-                {%endfor%} {%else%}
-                <h3>You have ) posts</h3>
-                {%endif%}
-
             </div>
         </div>
     </div>
-</div>
-{% endblock %}
+</div> {% endblock %}

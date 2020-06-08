@@ -91,7 +91,8 @@ class PhotoProfile(db.Model):
 
     id = db.Column(db.Integer,primary_key = True)
     pic_path = db.Column(db.String())
-    user_id = db.Column(db.Integer,db.ForeignKey("users.id"))        
+    user_id = db.Column(db.Integer,db.ForeignKey("users.id"))
+               
 
 
 @login_manager.user_loader
