@@ -1,41 +1,58 @@
 import os
-import psycopg2
 class Config:
-
+    '''
+    General configuration parent class
+    '''
     
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://nabalayo:kartie@localhost/project'
+    SECRET_KEY = os.environ.get('SECRET_KEY')
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://nabalayo:karitie@localhost/project'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     UPLOADED_PHOTOS_DEST = 'app/static/photos'
-    SECRET_KEY=os.environ.get('SECRET_KEY')
     
-    #email configurations
+    #  email configurations
     MAIL_SERVER = 'smtp.googlemail.com'
-    MAIL_PORT = 587
-    MAIL_USE_TLS = True
+    MAIL_PORT = 465
+    MAIL_USE_TLS = False
+    MAIL_USE_SSL = True
     MAIL_USERNAME = os.environ.get("MAIL_USERNAME")
     MAIL_PASSWORD = os.environ.get("MAIL_PASSWORD")
 
+    # simple mde  configurations
+    SIMPLEMDE_JS_IIFE = True
+    SIMPLEMDE_USE_CDN = True
 
     @staticmethod
     def init_app(app):
         pass
 
-class ProdConfig:
-    '''
-    production config child class
-    '''
-    
-    SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
-    
 
-class DevConfig:
+
+class ProdConfig(Config):
     '''
-    development config class
+    Production  configuration child class
+
+    Args:
+        Config: The parent configuration class with General configuration settings
     '''
+    SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
+
+# class TestConfig(Config):
+#     SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://nabalayo:karitie@localhost/jvune_test'
+
+
+class DevConfig(Config):
+    '''
+    Development  configuration child class
+
+    Args:
+        Config: The parent configuration class with General configuration settings
+    '''
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://nabalayo:karitie@localhost/project'
 
     DEBUG = True
 
 config_options = {
-'development':DevConfig,
-'production':ProdConfig
-}
+    'development': DevConfig,
+    'production': ProdConfig,
+  
+}    

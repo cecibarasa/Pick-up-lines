@@ -1,6 +1,6 @@
 from flask import render_template,request,redirect,url_for,abort
 from . import main
-from ..models import User,Pitch,Comment
+from ..models import User,Pitch,Comment,Upvote,Downvote
 from .forms import Pitch_Form, Update_Profile,CommentsForm
 from .. import db, photos
 from flask_login import login_required, current_user
@@ -22,6 +22,8 @@ def pitch():
     view pitch function that returns pitch categories
     '''
     general = Pitch.query.all()
+    likes = Upvote.query.all()
+
         # return redirect(url_for('main.index'))
 
     return render_template('pitch.html', general=general)
@@ -118,5 +120,25 @@ def new_pitch():
         
         return redirect(url_for('main.pitch'))
     
-    return render_template('new_pitch.html', pitch_form = form)  
+    return render_template('new_pitch.html', pitch_form=form)
+
+@main.route('/like/<int:id>', methods=['POST', 'GET'])
+@login_required
+def upvote(id):
+    pitch = Pitch.query.get(id)
+    vote_mpya = Upvote(pitch=pitch, upvote=1)
+    vote_mpya.save()
+    return redirect(url_for('main.pitch'))
+
+    return render_template('pitch.html', pitch = pitch, comment_form = form,comments = comments, date = posted_date)
+
+@main.route('/dislike/<int:id>', methods=['GET', 'POST'])
+@login_required
+def downvote(id):
+    pitch = Pitch.query.get(id)
+    vm = Downvote(pitch=pitch, downvote=1)
+    vm.save()
+    return redirect(url_for('main.pitch'))
+
+    return render_template('pitch.html', pitch = pitch, comment_form = form,comments = comments, date = posted_date)      
 

@@ -5,29 +5,32 @@
     <div class="row">
         <div class="col-md-2"></div>
         <div class="col-md-8">
+            <div class="">
 
-            <div class="card">
-                <div class="card-header">
-                    <b>{{pitch.category}}</b>
-                </div>
-                <div class="card-body">
-
-                    <p class="card-text">
-                        <i><strong>{{pitch.title}}</strong></i><br>
-                        <i>{{pitch.content}}</i>
-                        <i>~ {{pitch.author}}</i>
-
-                    </p>
-
-                    <div>
-
-                        <a href="">Vote Up </a>&ensp;
-                        <a href="">Vote Down </a>&ensp;
-                        <a href="{{url_for('main.comment',pitch_id=pitch.id)}}">Comment</a>&ensp;
+                <div class="card">
+                    <div class="card-header">
+                        <b>{{pitch.category}}</b>
                     </div>
-                </div>
+                    <div class="card-body">
 
-                <a href="{{url_for('main.new_pitch')}}" class="btn btn-small">Add a Pitch</a>
+                        <p class="card-text">
+                            <i><strong>{{pitch.title}}</strong></i><br>
+                            <i>{{pitch.content}}</i>
+                            <i>~ {{pitch.author}}</i>
+
+                        </p>
+
+                        <div>
+
+                            <a href="/like/{{pitch.id}} "><button ><i class="far fa-thumbs-up"></i> {{pitch.upvote.count()}}</button></a>
+
+                            <a href="/dislike/{{pitch.id}} "><button ><i class="far fa-thumbs-down"></i> {{pitch.downvote.count()}}</button></a>
+                            <a href="{{url_for('main.comment',pitch_id=pitch.id)}}">Comment</a>&ensp;
+                        </div>
+                    </div>
+
+                    <a href="{{url_for('main.new_pitch')}}" class="btn btn-small">Add a Pitch</a>
+                </div>
             </div>
 
         </div>
