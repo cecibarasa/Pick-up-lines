@@ -1,3 +1,4 @@
+[![codebeat badge](https://codebeat.co/badges/0b3546cb-0910-46f5-8d18-a5b7e6ee781e)](https://codebeat.co/projects/github-com-cecibarasa-pick-up-lines-master)
 ### Pick Up Lines
 
 *By Cecilia Barasa*
